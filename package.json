@@ -1,0 +1,24 @@
+{
+  "name": "react-express-exemplar",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jarno Lahtinen",
+  "license": "ISC",
+  "dependencies": {
+    "browser-sync": "^2.18.13",
+    "browserify": "^14.5.0",
+    "create-react-class": "^15.6.2",
+    "ejs": "^2.5.7",
+    "express": "^4.16.2",
+    "gulp": "^3.9.1",
+    "gulp-live-server": "0.0.31",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "reactify": "^1.1.1",
+    "vinyl-source-stream": "^1.1.0"
+  }
+}
