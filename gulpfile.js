@@ -5,6 +5,8 @@ let browserify = require('browserify');
 let source = require('vinyl-source-stream');
 let reactify = require('reactify');
 
+let server;
+
 gulp.task('live-server', function() {
     var server = new LiveServer('server/main.js');
     server.start();

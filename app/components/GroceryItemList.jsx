@@ -1,6 +1,7 @@
 let React = require('react');
 let createReactClass = require('create-react-class');
 let GroceryItem = require('./GroceryItem.jsx');
+let GroceryListAddItem = require('./GroceryListAddItem.jsx');
 
 module.exports = createReactClass({
     render: function() {
@@ -15,6 +16,7 @@ module.exports = createReactClass({
                     })
                     }
                 </div>
+                <GroceryListAddItem />
             </div>
         )
     }
