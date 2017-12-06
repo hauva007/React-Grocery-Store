@@ -1,71 +1,74 @@
 let dispatcher = require('./../dispatcher.js');
+let helper = require('./../helpers/RestHelper.js');
 
 function GroceryItemStore() {
-    let items = [{
-        name: 'Ice Cream'
-    }, {
-        name: 'Coca Cola',
-        purchased: true
-    }, {
-        name: 'Snus',
-        purchased: true
-    }, {
-        name: 'Waffles'
-    }, {
-        name: 'Candy'
-    }, {
-        name: 'Sanarks'
-    }];
-
+    let items = [];
     let listeners = [];
 
-    function getItems() {
-        return items;
-    }
-
-    function addGroceryItem(item) {
-        items.push(item);
+    helper.get('api/items').then(function(data) {
+        items = data;
         triggerListeners();
-    }
-
-    function deleteGroceryItem(item) {
-        let index;
-        items.filter(function(_item, _index) {
-            if (_item.name == item.name) {
-                index = _index;
-            }
-        });
-
-        items.splice(index, 1);
-        triggerListeners();
-    }
-
-    function setGroceryItemBought(item, isBought) {
-        //let _item = items.filter(function(a) { return a.name == item.name })[0];
-        //console.log(_item);
-        item.purchased = isBought || false;
-        triggerListeners();
-    }
-
-    function onChange(listener) {
-        listeners.push(listener);
-    }
+    });
 
     function triggerListeners() {
         listeners.forEach(function(listener) {
             listener(items);
+        });
+    };
+
+    function removeGroceryItem(item) {
+        var index;
+        items.filter(function(_item, _index) {
+            if (_item.name === item.name) {
+                index = _index;
+            }
+        });
+        var removed = items.splice(index, 1)[0];
+        triggerListeners();
+
+        helper.del('api/items/' + item._id)
+        .catch(function() {
+            items.splice(index, 0, removed);
+        });
+    };
+
+    function addGroceryItem(item) {
+        var i = items.push(item);
+        triggerListeners();
+        helper.post('api/items', item)
+        .then(function(data) {
+            item._id = data._id;
         })
+        .catch(function() {
+            items.splice(i, 1);
+        });
+    };
+
+    function setGroceryItemBought(item, isBought) {
+        let _item = items.filter(function(a) { return a.name == item.name })[0];
+        item.purchased = isBought || false;
+        triggerListeners();
+        helper.patch('api/items/' + item._id, item);
     }
+
+    function getItems() {
+        return items;
+    };
+
+    function onChange(listener) {
+        listeners.push(listener);
+    };
 
     dispatcher.register(function(event) {
         let split = event.type.split(':');
         if (split[0] === 'grocery-item') {
             switch(split[1]) {
                 case 'add':
+                    console.log(event);
                     addGroceryItem(event.payload);
                     break;
                 case 'delete':
-                    deleteGroceryItem(event.payload);
+                    removeGroceryItem(event.payload);
                     break;
                 case 'buy':
                     setGroceryItemBought(event.payload, true);

@@ -9,7 +9,7 @@ function render() {
     ReactDOM.render(<GroceryItemList items={initial}/>, document.getElementById('app'));
 }
 groceryItemStore.onChange(function(items) {
-    initials = items;
+    initial = items;
     render();
 })
 
