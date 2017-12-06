@@ -16,7 +16,7 @@ function GroceryItemStore() {
     }, {
         name: 'Sanarks'
     }];
-    
+
     let listeners = [];
 
     function getItems() {
@@ -25,6 +25,25 @@ function GroceryItemStore() {
 
     function addGroceryItem(item) {
         items.push(item);
+        triggerListeners();
+    }
+
+    function deleteGroceryItem(item) {
+        let index;
+        items.filter(function(_item, _index) {
+            if (_item.name == item.name) {
+                index = _index;
+            }
+        });
+
+        items.splice(index, 1);
+        triggerListeners();
+    }
+
+    function setGroceryItemBought(item, isBought) {
+        //let _item = items.filter(function(a) { return a.name == item.name })[0];
+        //console.log(_item);
+        item.purchased = isBought || false;
         triggerListeners();
     }
 
@@ -44,6 +63,15 @@ function GroceryItemStore() {
             switch(split[1]) {
                 case 'add':
                     addGroceryItem(event.payload);
+                    break;
+                case 'delete':
+                    deleteGroceryItem(event.payload);
+                    break;
+                case 'buy':
+                    setGroceryItemBought(event.payload, true);
+                    break;
+                case 'unbuy':
+                    setGroceryItemBought(event.payload, false);
                     break;
             }
         }

@@ -1,0 +1,20 @@
+{
+  "name": "react-express-exemplar",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "Jarno Lahtinen"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/hauva007/react-grocery-store",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "skeleton": "^2.0.4"
+  }
+}
