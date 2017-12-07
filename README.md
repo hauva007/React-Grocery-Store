@@ -4,13 +4,10 @@ Grocery Item Store
 
 ## Installation
 
-Install `react-grocery-store` with [npm](https://www.npmjs.com/):
+Install `react-grocery-store` with [npm](https://www.npmjs.com/) and [bower](https://bower.io/):
 
 ```
 $ npm install
-```
-
-```
 $ bower install
 ```
 
