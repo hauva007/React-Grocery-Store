@@ -9,6 +9,9 @@
   "author": "Jarno Lahtinen",
   "license": "ISC",
   "dependencies": {
+    "babel-core": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
     "body-parser": "^1.18.2",
     "browser-sync": "^2.18.13",
     "browserify": "^14.5.0",
@@ -24,5 +27,6 @@
     "react-dom": "^16.2.0",
     "reactify": "^1.1.1",
     "vinyl-source-stream": "^1.1.0"
-  }
+  },
+  "devDependencies": {}
 }
