@@ -22,7 +22,7 @@
     "gulp": "^3.9.1",
     "gulp-live-server": "0.0.31",
     "jquery": "^3.2.1",
-    "mongoose": "^4.13.6",
+    "mongoose": "^5.7.12",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "reactify": "^1.1.1",
